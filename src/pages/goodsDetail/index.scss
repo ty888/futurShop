@@ -1,0 +1,226 @@
+/**
+ * 组件和引用组件的页面不能使用 id 选择器（#a）、属性选择器（[a]）和标签名选择器，请改用 class 选择器
+ * 组件和引用组件的页面中使用后代选择器（.a .b）在一些极端情况下会有非预期的表现，如遇，请避免使用
+ * 子元素选择器（.a > .b）只能用于 View 组件与其子节点之间，用于其他组件可能导致非预期的情况 (BEM禁用)
+ * 继承样式，如 font 、 color ，会从组件外（父组件）继承到组件内。但是引用组件时在组件节点上书写的 className 无效
+ * 除继承样式外， app.scss 中的样式、组件所在页面的样式，均对自定义组件无效
+ * https://nervjs.github.io/taro/docs/component-style.html
+ */
+
+//跨平台 weapp h5
+
+/*  #ifdef  %PLATFORM%  */
+
+/*  #endif  */
+
+//指定平台剔除样式
+
+/*  #ifndef  %PLATFORM%  */
+
+/*  #endif  */
+
+@import "@/styles/base.scss";
+
+$namespace: ".good_detail_c";
+
+#{$namespace} {
+  background-color: #f1f3f5;
+  min-height: 100vh;
+  padding-bottom: 112px;
+  .header_box {
+    position: relative;
+    > .back {
+      position: fixed;
+      width: 70px;
+      height: 70px;
+      border-radius: 200px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: rgba($color: #000000, $alpha: 0.5);
+      z-index: 10;
+      top: 20px;
+      left: 20px;
+      /*  #ifdef  weapp  */
+      top: 100px;
+      /*  #endif  */
+      > .left_icon {
+        color: #fff;
+        font-size: 30px;
+      }
+    }
+    .img_wrap {
+      height: 100%;
+    }
+    .img_item {
+      height: 100%;
+      position: relative;
+    }
+    .img {
+      /*  #ifdef  h5  */
+      height: 100%;
+      width: 100%;
+      position: relative;
+      img {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+
+      /*  #endif  */
+
+      /*  #ifdef  weapp  */
+      width: 100%;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+
+      /*  #endif  */
+    }
+  }
+  > .info_box {
+    padding-top: 20px;
+    padding-bottom: 16px;
+    background-color: #fff;
+    > .price_wrap {
+      padding: 0 20px;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      > .price_box {
+        display: flex;
+        flex-direction: row;
+        align-items: baseline;
+        > .y_price {
+          margin-left: 14px;
+          text-decoration: line-through;
+          font-size: 24px;
+          color: #888;
+        }
+      }
+      > .sale {
+        color: #888;
+        font-size: 20px;
+        > .num {
+          color: $priceColor;
+        }
+      }
+    }
+    > .title_wrap {
+      padding: 16px 0;
+    }
+    > .coupon_wrap {
+      padding: 10px 20px;
+    }
+  }
+  > .recommend_wrap {
+    background-color: #fff;
+    margin-top: 20px;
+    padding: 20px;
+    border-radius: 30px;
+    > .header {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      > .reccommend_icon {
+        height: 30px;
+        width: 30px;
+        margin-right: 10px;
+      }
+      > .reccommend_text {
+        font-size: 24px;
+        font-weight: bold;
+        color: #fe3738;
+      }
+    }
+    > .content {
+      font-size: 20px;
+      border-radius: 20px;
+      background-color: #f1f3f5;
+      padding: 20px 30px;
+      margin-top: 20px;
+      > .text {
+        color: #555;
+      }
+    }
+  }
+  >.detail_wrap{
+    background: #fff;
+    margin-top: 20px;
+    >.title_box{
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      padding: 30px;
+      >.label{
+        width: 6px;
+        height: 30px;
+        background-image: linear-gradient(180deg,#f5503a,#fad1cb);
+        margin-right: 8px;
+      }
+      >.text{
+        font-size: 26px;
+        color: #262626;
+        font-weight: 700;
+      }
+    }
+    >.content{
+      display: flex;
+      flex-direction: column;
+      >.img{
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
+  > .footer_bar_wrap {
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    height: 112px;
+    background-color: #fff;
+    padding: 20px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    > .left {
+      display: flex;
+      flex-direction: row;
+      margin-right: 20px;
+      >.op_item{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 0 10px;
+        >.op_img{
+          height: 40px;
+          width: 40px;
+        }
+        >.text{
+          font-size: 20px;
+          color: #707070;
+          margin-top: 4px;
+        }
+      }
+    }
+    > .right {
+      flex: 1;
+      height: 100%;
+      > .puy_btn {
+        border-radius: 200px;
+        color: #fff;
+        background: linear-gradient(to left, #fe3c35 0, #ff1f4c 100%);
+        font-size: 30px;
+        font-weight: bold;
+        height: 100%;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+      }
+    }
+  }
+}

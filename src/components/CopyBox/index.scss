@@ -1,0 +1,89 @@
+/**
+ * 组件和引用组件的页面不能使用 id 选择器（#a）、属性选择器（[a]）和标签名选择器，请改用 class 选择器
+ * 组件和引用组件的页面中使用后代选择器（.a .b）在一些极端情况下会有非预期的表现，如遇，请避免使用
+ * 子元素选择器（.a > .b）只能用于 View 组件与其子节点之间，用于其他组件可能导致非预期的情况 (BEM禁用)
+ * 继承样式，如 font 、 color ，会从组件外（父组件）继承到组件内。但是引用组件时在组件节点上书写的 className 无效
+ * 除继承样式外， app.scss 中的样式、组件所在页面的样式，均对自定义组件无效
+ * https://nervjs.github.io/taro/docs/component-style.html
+ */
+
+//跨平台 weapp h5
+
+/*  #ifdef  %PLATFORM%  */
+
+/*  #endif  */
+
+//指定平台剔除样式
+
+/*  #ifndef  %PLATFORM%  */
+
+/*  #endif  */
+
+@import "@/styles/base.scss";
+
+$namespace: ".copy_box_c";
+
+#{$namespace} {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background-color: rgba($color: #000000, $alpha: 0.5);
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  > .copy_wrap {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    > .copy_body {
+      border-radius: 20px;
+      overflow: hidden;
+      >.title_box{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 20px;
+        background-color: #f1f3f5;
+        >.text{
+          color: #333;
+          font-size: 26px;
+          font-weight: 700;
+        }
+        >.img{
+          width: 60px;
+          height: 60px;
+        }
+      }
+      > .content {
+        padding: 50px 30px;
+        font-size: 24px;
+        background-color: #fff;
+        >.content_box{
+          background-color: #f1f3f5;
+          padding: 16px;
+        }
+        >.copy_btn{
+          background-image: linear-gradient(-225deg, #5271C4 0%, #B19FFF 48%, #ECA1FE 100%);
+          color: #fff;
+          font-size: 24px;
+          border-radius: 200px;
+          width: 80%;
+          height: 60px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          margin: 50px auto 0;
+        }
+      }
+    }
+    >.close_btn{
+      color: #fff;
+      font-size: 60px;
+      margin-top: 50px;
+      text-align: center;
+    }
+  }
+}

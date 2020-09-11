@@ -1,0 +1,21 @@
+// 超出隐藏
+@mixin line($num: 1) {
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  @if ($num == 1) {
+    white-space: nowrap;
+  } @else {
+    display: -webkit-box;
+    -webkit-line-clamp: $num;
+
+    /* autoprefixer: off */
+    -webkit-box-orient: vertical;
+  }
+}
+
+// 价格颜色
+$priceColor: #FF2B22;
+
+// 购买按钮颜色
+$buyBtnColor: linear-gradient(to left, #fc6076 0%, #ff9a44 100%);
